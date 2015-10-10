@@ -1,0 +1,28 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+  <h2>List</h2>
+  
+
+
+<div class="row">
+  <div class="col-lg-2 col-xs-12">
+    <ul>
+      <li class="badge" ng-repeat="tag in list.tags">{{tag.TagName}}</li>
+    </ul>
+  </div>
+  
+  <div class="col-lg-10 col-xs-12">
+      <h4>Hey Dingus</h4>
+      <button class="btn btn-primary" ng-click="list.makeNewRecipe()">Make a New One</button>
+      
+      
+      <ul>
+        <li ng-repeat="rec in list.recipes" class="recipeTitle" ng-click="list.goToRecipe(rec.RecipeId)">
+          {{rec.recipeName}}
+        </li>
+      </ul>
+      
+  </div>
+</div>
+
+

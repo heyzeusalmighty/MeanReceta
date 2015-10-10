@@ -1,0 +1,54 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<h2>{{view.recipe.Recipe.RecipeName}}</h2>
+
+
+
+
+    <!--<a href="#new" class="btn btn-warning" ng-click="addARecipe()">New Recipe</a>-->
+
+
+<a class="btn btn-warning" href="#list">
+  <i class="glyphicon glyphicon-arrow-left"></i>
+</a>
+<button class="btn btn-primary" ng-click="view.commenceEditing()">Edit</button>
+
+
+<h3>{{view.recipe.Recipe.RecipeName}} <small>Serving Size: {{view.recipe.Recipe.ServingSize}}</small> </h3>
+
+<div class="btn-group" ng-repeat="tag in selectedRecipe.Tags">
+    <button class="btn btn-primary">{{tag.TagName}}</button> &nbsp;
+</div>
+
+<dl>
+    <dt>DESCRIPTION</dt>
+    <dd>{{view.recipe.Recipe.Description}}</dd>
+</dl>
+
+<ul>
+  <li class="badge" ng-repeat="tag in view.recipe.Tags">{{tag.TagName}}</li>
+</ul>
+
+
+<dl>
+    <dt>SOURCE</dt>
+    <dd>Martha Stewart's Greatest Hits - Christmas Time for Martha Town</dd>
+</dl>
+
+<div ng-repeat="group in view.recipe.Ingredients" class="ingredientGroup">
+    <strong>{{group.Title}}</strong>
+    <div class="row ingredientLine">
+        <div class="col-md-6" ng-repeat="ing in group.Ingredients">
+          {{ing.Ingredient}}
+        </div>
+    </div>
+</div>
+
+
+
+<dl class="dl-horizontal" ng-repeat="instructions in view.recipe.Instructions">
+    <dt>{{instructions.id}}.</dt>
+    <dd>
+        {{instructions.instructions}}
+    </dd>
+</dl>
