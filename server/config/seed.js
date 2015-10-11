@@ -8,6 +8,7 @@
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
 var Recipe = require('../api/recipe/recipe.model');
+var Tag = require('../api/tag/tag.model');
 
 Thing.find({}).remove(function() {
   Thing.create({
@@ -49,13 +50,20 @@ User.find({}).remove(function() {
   );
 });
 
-Recipe.find({}).remove(function() {
-  Recipe.create({
-    recipeName: 'Test Recipe 1',
-    description: 'This is a desc',
-    servingSize: '12',
-    instructions: [{ id: 1, instruction: 'do all the things first'}, { id: 2, instruction: 'now all the other things'}],
-    ingredients: [{ title: 'first things', ingredients: ['1/2 oz kale', 'some bourbon', 'prob salt']},
-                  { title: 'the rest', ingredients: ['18 chickens and their eggs', 'prob more salt']}]
-  });
-})
+// Recipe.find({}).remove(function() {
+//   Recipe.create({
+//     recipeName: 'Test Recipe 1',
+//     description: 'This is a desc',
+//     servingSize: '12',
+//     instructions: [{ id: 1, instruction: 'do all the things first'}, { id: 2, instruction: 'now all the other things'}],
+//     ingredients: [{ title: 'first things', ingredients: ['1/2 oz kale', 'some bourbon', 'prob salt']},
+//                   { title: 'the rest', ingredients: ['18 chickens and their eggs', 'prob more salt']}]
+//   });
+// });
+
+Tag.find({}).remove(function() {
+  Tag.create(
+    { tagName: 'Christmas', active: true },
+    { tagName: 'Turkish', active: true },
+    { tagName: 'Arbor Day', active: true})
+});

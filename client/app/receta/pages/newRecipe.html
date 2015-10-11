@@ -10,7 +10,8 @@
 </div>
 {{rec.Recipe.Recipe}}
 <div ng-repeat="tag in rec.foodTags" class="btn-group">
-    <button class="btn bottomSpace" ng-click="rec.toggleSelection(tag)" ng-class="tag.Selected ? 'btn-primary' : 'btn-default'">{{tag.TagName}}</button> &nbsp;
+    {{tag}}
+    <button class="btn bottomSpace" ng-click="rec.toggleSelection(tag)" ng-class="tag.Selected ? 'btn-primary' : 'btn-default'">{{tag.tagName}}</button> &nbsp;
 </div>
 
 
@@ -31,7 +32,7 @@
     </div>
     <div class="col-lg-10 col-xs-12">
       <label for="newInstructions">Instructions</label>
-      <textarea ng-repeat="i in rec.instructions" ng-model="i.instructions" id="newInstructions" class="form-control topSpace">
+      <textarea ng-repeat="i in rec.instructions" ng-model="i.instruction" id="newInstructions" class="form-control topSpace">
       </textarea>
     </div>
   </div>

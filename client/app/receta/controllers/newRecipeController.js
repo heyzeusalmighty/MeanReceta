@@ -10,9 +10,7 @@
   function NewRecipeController(DataService, toastr, $location) { 
     
     var vm = this;
-    
-    vm.name = "recipe";
-    
+        
     vm.foodTags = [];
     
     DataService.getTags().then(function(data) {
@@ -22,7 +20,7 @@
     var instructionCounter = 1;
     vm.recipeTags = [];
     vm.ingredients = [];
-    vm.instructions = [{ id: 1, instructions: ""}];
+    vm.instructions = [{ id: 1, instruction: ""}];
     vm.newRecipe = {
       'RecipeName': 'dd',
       'RecipeId': '',
@@ -37,23 +35,26 @@
       //toastr.success('','HI');
       
       var cleanedTags = vm.recipeTags.map(function(x) {
-        return { TagName : x.TagName, TagId : x.TagId }
+        //return { TagName : x.TagName, TagId : x.TagId }
+        //return { x._id }
       });
+
+      console.log('tags :: ' + cleanedTags);
       
       
       console.table(vm.newRecipe)
       var newRec = {
-        RecipeName : vm.newRecipe.RecipeName,
-        Description : vm.newRecipe.Description,
-        ServingSize: vm.newRecipe.ServingSize,
-        Ingredients: vm.ingredients,
-        Instructions: vm.instructions,
-        Tags: cleanedTags
+        recipeName : vm.newRecipe.RecipeName,
+        description : vm.newRecipe.Description,
+        servingSize: vm.newRecipe.ServingSize,
+        ingredients: vm.ingredients,
+        instructions: vm.instructions,
+        tags: vm.recipeTags
       };
       
       DataService.addNewRecipe(newRec).then(function(data) {
         toastr.success("Saved Successfully");
-        $location.path('list');
+        $location.path('receta');
       });
       
       
@@ -61,7 +62,7 @@
 
     vm.addNewInstruction = function() {
       instructionCounter++;
-      vm.instructions.push({id: instructionCounter, instructions:""});
+      vm.instructions.push({id: instructionCounter, instruction:""});
     };
     
     
@@ -81,21 +82,13 @@
     };
     
     vm.toggleSelection = function(myTag) {
-      //console.log(this)
       myTag.Selected = !myTag.Selected;
-      
-      var idx = -1;
-      for (var i = 0; i < vm.recipeTags.length; i++) {
-        if (vm.recipeTags[i].TagId == myTag.TagId) {
-      	  idx = i;
-        }
-      }
+      var idx = vm.recipeTags.indexOf(myTag);
       if (idx > -1) {
         vm.recipeTags.splice(idx, 1);
       } else {
         vm.recipeTags.push(myTag);
-      }
-      
+      }           
     };
     
   }

@@ -1,11 +1,5 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<h2>{{view.recipe.Recipe.RecipeName}}</h2>
-
-
-
-
-    <!--<a href="#new" class="btn btn-warning" ng-click="addARecipe()">New Recipe</a>-->
 
 
 <a class="btn btn-warning" href="#list">
@@ -14,20 +8,20 @@
 <button class="btn btn-primary" ng-click="view.commenceEditing()">Edit</button>
 
 
-<h3>{{view.recipe.Recipe.RecipeName}} <small>Serving Size: {{view.recipe.Recipe.ServingSize}}</small> </h3>
+<h3>{{view.recipe.recipeName}} <small>Serving Size: {{view.recipe.servingSize}}</small> </h3>
 
-<div class="btn-group" ng-repeat="tag in selectedRecipe.Tags">
-    <button class="btn btn-primary">{{tag.TagName}}</button> &nbsp;
+<div class="btn-group" ng-repeat="tag in view.recipeTags">
+    <button class="btn btn-primary btn-sm">{{tag}}</button> &nbsp;
 </div>
 
 <dl>
     <dt>DESCRIPTION</dt>
-    <dd>{{view.recipe.Recipe.Description}}</dd>
+    <dd>{{view.recipe.description}}</dd>
 </dl>
 
-<ul>
-  <li class="badge" ng-repeat="tag in view.recipe.Tags">{{tag.TagName}}</li>
-</ul>
+<!-- <ul>
+  <li class="badge" ng-repeat="tag in view.recipe.Tags">{{tag.tagName}}</li>
+</ul> -->
 
 
 <dl>
@@ -35,20 +29,26 @@
     <dd>Martha Stewart's Greatest Hits - Christmas Time for Martha Town</dd>
 </dl>
 
-<div ng-repeat="group in view.recipe.Ingredients" class="ingredientGroup">
+<div ng-repeat="group in view.ingredients" class="ingredientGroup">
     <strong>{{group.Title}}</strong>
     <div class="row ingredientLine">
         <div class="col-md-6" ng-repeat="ing in group.Ingredients">
-          {{ing.Ingredient}}
+          {{ing.ingredient}}
         </div>
     </div>
 </div>
 
 
 
-<dl class="dl-horizontal" ng-repeat="instructions in view.recipe.Instructions">
+<dl class="dl-horizontal" ng-repeat="instructions in view.recipe.instructions">
     <dt>{{instructions.id}}.</dt>
     <dd>
-        {{instructions.instructions}}
+        {{instructions.instruction}}
     </dd>
 </dl>
+
+
+
+<pre>{{view.recipe | json}}</pre>
+
+<pre>{{ view.foodTags | json}}</pre>    

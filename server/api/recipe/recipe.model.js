@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 var RecipeSchema = new Schema({
   recipeName: String,
   description: String,
-  ServingSize: String,
+  servingSize: String,
   ingredients: [{
 	title : String,
 	ingredients: [String]
@@ -15,7 +15,7 @@ var RecipeSchema = new Schema({
   	id: Number,
   	instruction: String
   }],
-  tags: [Number]
+  tags: [String]
 
 });
 

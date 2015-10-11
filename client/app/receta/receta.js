@@ -22,6 +22,12 @@ angular.module('recetaApp')
       	controllerAs: 'rec'
       })
 
+      .when('/receta/edit/:recipeId', {
+        templateUrl: 'app/receta/pages/edit.html',
+        controller: 'EditController',
+        controllerAs: 'rec'
+      })
+
 
         // .when("/", {
         //   templateUrl: "pages/list.html",
