@@ -30,6 +30,7 @@ exports.create = function(req, res) {
 
 // Updates an existing recipe in the DB.
 exports.update = function(req, res) {
+  console.info('udpateing: ' + req);
   if(req.body._id) { delete req.body._id; }
   Recipe.findById(req.params.id, function (err, recipe) {
     if (err) { return handleError(res, err); }

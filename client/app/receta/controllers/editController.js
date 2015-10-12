@@ -23,7 +23,6 @@
       vm.allTags = tags;
       
       DataService.getRecipe(vm.recipeId).then(function(data) {
-        console.log(data);
         vm.recipe = data;
         
         instructionCounter = vm.recipe.instructions.length;
@@ -52,7 +51,7 @@
     };
    
    vm.addNewGroup = function() {
-    var newGroup = { 'Title': '', 'RecipeId': 0, 'Ingredients': [{ 'Ingredient': '' }] };
+    var newGroup = { 'title': '', 'ingredients': [{ 'ingredient': '' }] };
     if(vm.recipe.ingredients === undefined) {
       vm.recipe.ingredients = [];
     } 
@@ -75,16 +74,16 @@
    
    //function s
    vm.update = function() {
-     toastr.success('Saving');
+     toastr.success('Saving => ' + vm.recipe.servingSize);
      DataService.updateRecipe(vm.recipe).then(function(data) {
-       toastr.success(data);
-       $location.path('/view/' + vm.recipeId);
+       //toastr.success(data);
+       $location.path('/receta/view/' + vm.recipeId);
      });
    }
    
    vm.cancelEdit = function() {
      toastr.error('cancelling edit');
-     $location.path('/view/' + vm.recipeId);
+     $location.path('/receta/view/' + vm.recipeId);
    }
    
     
