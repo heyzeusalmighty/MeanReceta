@@ -5,6 +5,7 @@ angular.module('recetaApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
+  'ngAnimate',
   'btford.socket-io',
   'ui.bootstrap',
   'toastr'

@@ -10,7 +10,6 @@
 </div>
 {{rec.Recipe.Recipe}}
 <div ng-repeat="tag in rec.foodTags" class="btn-group">
-    {{tag}}
     <button class="btn bottomSpace" ng-click="rec.toggleSelection(tag)" ng-class="tag.Selected ? 'btn-primary' : 'btn-default'">{{tag.tagName}}</button> &nbsp;
 </div>
 
@@ -29,40 +28,64 @@
   <div class="row">
     <div class="col-lg-2 col-xs-12">
       <button class="btn btn-success" ng-click="rec.addNewInstruction()"><i class="glyphicon glyphicon-plus"></i></button>
-    </div>
-    <div class="col-lg-10 col-xs-12">
+  </div>
+  <div class="col-lg-10 col-xs-12">
       <label for="newInstructions">Instructions</label>
       <textarea ng-repeat="i in rec.instructions" ng-model="i.instruction" id="newInstructions" class="form-control topSpace">
       </textarea>
-    </div>
   </div>
+
+
+
+
+<!-- HELLO
+<button class="btn btn-primary" ng-click="rec.addNewGroup()">Add New Ingredient Group</button>
+<div ng-repeat="group in rec.ingredients">
+<h3>{{group.title}}</h3>
+<pre>{{group}}</pre>
+<input type="text" ng-model="group.title" />
+    <br />
+    <button class="btn" ng-click="rec.addNewIngredient(group)">Add Ingredient </button>
+    <ul>
+        <li ng-repeat="ing in group.ingredients track by $index">
+            <input type="text" ng-model="ing.ing" /> {{ing}}
+        </li>
+    </ul>
 </div>
-        
-        
+ -->
+
+
+
 <button class="btn btn-primary" ng-click="rec.addNewGroup()">Add New Ingredient Group</button>
 <div class="panel panel-warning" ng-repeat="group in rec.ingredients">
   <div class="panel-heading">
-      <h3 class="panel-title"> {{group.Title}}</h3>
+      <h3 class="panel-title"> {{group.title}}</h3>
   </div>
   <div class="panel-body">
       <div class="form-group">
           <label>Ingredient Group</label>
-          <input type="text" class="form-control" ng-model="group.Title" />
+          <input type="text" class="form-control" ng-model="group.title" />
       </div>
       <button id="addNewIngredient" ng-click="rec.addNewIngredient(group)" class="btn btn-success" type="button">Add New Ingredient</button>
       <strong><span id="editMessaging"></span></strong>
       <div class="row">
-          <div ng-repeat="ing in group.Ingredients" class="col-md-4">
-              <div class="input-group  input-group-sm topSpace">
-                  <span class="input-group-btn">
-                      <button class="btn btn-danger" type="button" ng-click="rec.deleteIngredient($index, $parent.$index)">
-                          <i class="glyphicon glyphicon-remove"></i>
-                      </button>
-                  </span>
-                  <input type="text" class="form-control input-sm" ng-model="ing.Ingredient">
-              </div>
-          </div>
+          <div ng-repeat="ing in group.ingredients track by $index" class="col-md-4">
+            <div class="input-group  input-group-sm topSpace">
+              <span class="input-group-btn">
+                <button class="btn btn-danger" type="button" ng-click="rec.deleteIngredient($index, $parent.$index)">
+                  <i class="glyphicon glyphicon-remove"></i>
+              </button>
+          </span>
+          <input type="text" class="form-control input-sm" ng-model="ing.ing" />
       </div>
   </div>
-</div>
-        
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+
+
+
+
+<pre>{{rec.ingredients | json}}</pre>

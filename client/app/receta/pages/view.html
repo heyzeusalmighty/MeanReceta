@@ -2,9 +2,9 @@
 
 
 
-<a class="btn btn-warning" href="#list">
-  <i class="glyphicon glyphicon-arrow-left"></i>
-</a>
+<button class="btn btn-warning">
+  <i class="glyphicon glyphicon-arrow-left" ng-click="view.backToList()"></i>
+</button>
 <button class="btn btn-primary" ng-click="view.commenceEditing()">Edit</button>
 
 
@@ -29,17 +29,18 @@
     <dd>Martha Stewart's Greatest Hits - Christmas Time for Martha Town</dd>
 </dl>
 
-<div ng-repeat="group in view.ingredients" class="ingredientGroup">
-    <strong>{{group.Title}}</strong>
+<h4>Ingredients</h4>
+<div ng-repeat="group in view.recipe.ingredients" class="ingredientGroup">
+    <strong>{{group.title}}</strong>
     <div class="row ingredientLine">
-        <div class="col-md-6" ng-repeat="ing in group.Ingredients">
-          {{ing.ingredient}}
+        <div class="col-md-6" ng-repeat="ing in group.ingredients track by $index">
+          {{ing}}
         </div>
     </div>
 </div>
 
 
-
+<h4>Directions</h4>
 <dl class="dl-horizontal" ng-repeat="instructions in view.recipe.instructions">
     <dt>{{instructions.id}}.</dt>
     <dd>
@@ -49,6 +50,8 @@
 
 
 
-<pre>{{view.recipe | json}}</pre>
 
-<pre>{{ view.foodTags | json}}</pre>    
+
+
+<pre>{{view.recipe | json}}</pre>
+   

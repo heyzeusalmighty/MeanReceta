@@ -10,7 +10,7 @@
     
     var vm = this;
     
-    vm.name = "recipe"; 
+    vm.name = 'recipe'; 
     var instructionCounter = 0;
     
     console.info('edit loaded');
@@ -47,7 +47,7 @@
 
    vm.addNewInstruction = function() {
       instructionCounter++;
-      vm.recipe.instructions.push({id: instructionCounter, instruction:""});
+      vm.recipe.instructions.push({id: instructionCounter, instruction:''});
     };
    
    vm.addNewGroup = function() {
@@ -76,15 +76,15 @@
    vm.update = function() {
      toastr.success('Saving => ' + vm.recipe.servingSize);
      DataService.updateRecipe(vm.recipe).then(function(data) {
-       //toastr.success(data);
+       toastr.success(data);
        $location.path('/receta/view/' + vm.recipeId);
      });
-   }
+   };
    
    vm.cancelEdit = function() {
      toastr.error('cancelling edit');
      $location.path('/receta/view/' + vm.recipeId);
-   }
+   };
    
     
   }

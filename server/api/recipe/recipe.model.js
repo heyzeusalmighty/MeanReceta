@@ -8,9 +8,9 @@ var RecipeSchema = new Schema({
   description: String,
   servingSize: String,
   ingredients: [{
-	title : String,
-	ingredients: [String]
-  }],
+  	title : String,
+  	ingredients: [String]
+    }],
   instructions: [{
   	id: Number,
   	instruction: String
