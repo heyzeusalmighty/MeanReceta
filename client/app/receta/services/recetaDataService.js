@@ -32,7 +32,11 @@
         }
 
         function addNewTag(tagName) {
-            //nuffin yet
+            var deferred = $q.defer();
+            $http.post('/api/tags', tagName).success(function() {
+                deferred.resolve('success');
+            });  
+            return deferred.promise;
         }
 
         function getRecentRecipes() {
