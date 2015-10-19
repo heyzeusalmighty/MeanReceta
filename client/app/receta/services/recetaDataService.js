@@ -33,8 +33,9 @@
 
         function addNewTag(tagName) {
             var deferred = $q.defer();
-            $http.post('/api/tags', tagName).success(function() {
-                deferred.resolve('success');
+            $http.post('/api/tags', tagName).success(function(data) {
+                //console.info(data);
+                deferred.resolve(data);
             });  
             return deferred.promise;
         }

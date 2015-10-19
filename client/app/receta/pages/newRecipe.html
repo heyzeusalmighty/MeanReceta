@@ -8,11 +8,32 @@
     <label for="newName">Recipe Name</label>
     <input id="newName" class="form-control" ng-model="rec.newRecipe.RecipeName" >
 </div>
-{{rec.Recipe.Recipe}}
-<div ng-repeat="tag in rec.foodTags" class="btn-group">
-    <button class="btn bottomSpace" ng-click="rec.toggleSelection(tag)" ng-class="tag.Selected ? 'btn-primary' : 'btn-default'">{{tag.tagName}}</button> &nbsp;
+
+<p><strong>Tags</strong></p>
+
+<div class="buttonRow">
+    <button class="btn bottomSpacing" title="add New Tag" ng-class="(rec.addingTag) ? 'btn-default' : 'btn-success'" ng-disabled="rec.addingTag" ng-click="rec.addNewTag()" >
+        <i class="glyphicon glyphicon-plus"></i>
+    </button>
+    <div ng-repeat="tag in rec.foodTags" class="btn-group">
+        <button class="btn bottomSpacing" ng-click="rec.toggleSelection(tag)" ng-class="tag.Selected ? 'btn-primary' : 'btn-default'">
+            {{tag.tagName}}
+        </button> &nbsp;
+    </div>
 </div>
 
+<div class="form-inline ">
+    <div class="form-group bottomSpacing" ng-show="rec.addingTag">
+        <label for="newTagName" class="">Tag Name</label>
+        <input type="text" class="form-control" ng-model="rec.newTagName" />
+        <button class="btn btn-success" ng-click="rec.saveTag()">
+            <i class="glyphicon glyphicon-ok"></i>
+        </button>
+        <button class="btn btn-danger" ng-click="rec.cancelTag()">
+            <i class="glyphicon glyphicon-remove"></i>
+        </button>
+    </div>
+</div>
 
 <div class="form-group">
     <label for="newDescription">Description</label>
@@ -52,7 +73,7 @@
         </li>
     </ul>
 </div>
- -->
+-->
 
 
 
@@ -79,11 +100,11 @@
           <input type="text" class="form-control input-sm" ng-model="ing.ing" />
       </div>
   </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
 

@@ -27,6 +27,8 @@
       'Description': '',
       'ServingSize': ''
     };
+    vm.addingTag = false;
+    vm.newTagName = '';
 
 
     
@@ -86,6 +88,27 @@
             vm.recipeTags.push(myTag);
         }           
     };
+
+    vm.addNewTag = function() {
+        vm.addingTag = true;
+    };
+
+    vm.saveTag = function() {
+        console.info(vm.recipeTags);
+        var tagTag = { tagName: vm.newTagName};
+        DataService.addNewTag(tagTag).then(function(data) {
+            toastr.success('Successfully created ' + data.tagName);
+            vm.foodTags.push(data);
+            //setTags();
+            vm.addingTag = false;
+            vm.newTagName = "";
+        });
+    };
+
+    vm.cancelTag = function() {
+        vm.addingTag = false;
+        vm.newTagName = '';
+    };   
 
 }
 
