@@ -13,6 +13,8 @@
     vm.recipes = [];
     vm.newTagName = "";
     vm.addingTag = false;
+    vm.yumSearch = "cinnamon rolls";
+    vm.searchVisible = false;
     
     
     setTags();
@@ -48,6 +50,16 @@
         vm.addingTag = false;
         vm.newTagName = "";
     }
+
+    vm.openSearch = function() {
+        vm.searchVisible = true;
+    }
+
+    vm.searchYummy = function() {
+        DataService.searchYum(vm.yumSearch).then(function(data) {
+            toastr.success(data);
+        });
+    };
 
 
     function setTags() {

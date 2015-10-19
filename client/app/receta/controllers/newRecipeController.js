@@ -31,7 +31,10 @@
     vm.newTagName = '';
 
 
-    
+    vm.backToList = function() {
+        $location.path('receta');
+    };
+
     vm.addNewRecipe = function() {
      
 
@@ -61,6 +64,16 @@
     vm.addNewInstruction = function() {
         instructionCounter++;
         vm.instructions.push({id: instructionCounter, instruction:''});
+    };
+
+    vm.removeInstructions = function(ins) {
+        console.log(ins);
+        var idx = vm.instructions.indexOf(ins);
+        if(idx > -1) {
+            vm.instructions.splice(idx, 1);
+        } else {
+            toastr.danger('Could not delete instruction');
+        }
     };
 
 

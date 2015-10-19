@@ -17,7 +17,8 @@
             addNewTag : addNewTag,
             addNewRecipe : addNewRecipe,
             getRecipe : getRecipe,
-            updateRecipe : updateRecipe
+            updateRecipe : updateRecipe,
+            searchYum : searchYum
         };
         return service;
 /////////////////////////////////////////
@@ -67,6 +68,15 @@
         function updateRecipe(recipe) {
             var deferred = $q.defer();
             $http.put('/api/recipes/' + recipe._id, recipe).success(function(rec) {
+                deferred.resolve(rec);
+            });   
+            return deferred.promise;
+        }
+
+        function searchYum(term) {
+            var deferred = $q.defer();
+
+            $http.get('/api/yum/' + term).success(function(rec) {
                 deferred.resolve(rec);
             });   
             return deferred.promise;

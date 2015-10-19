@@ -45,3 +45,11 @@
 .buttonRow {
     margin-bottom: 10px;
 }
+
+.recipeTitle {
+    cursor: pointer;
+}
+
+.topSpace {
+    margin-top: 10px;
+}
