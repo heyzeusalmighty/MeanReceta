@@ -23,19 +23,55 @@
 	  <button class="btn btn-primary" ng-click="list.makeNewRecipe()">Make a New One</button>
 	  <button class="btn btn-warning" ng-click="list.openSearch()">Yummy Search</button>
 
-	  <div class="form-group" ng-show="list.searchVisible">
-	  	<label class="control-label">Search Terms</label>
-	  	<input type="text" class="form-control" ng-model="list.yumSearch" />
-	  	<button class="btn btn-success" ng-click="list.searchYummy()">Search</button>
-	  </div>
+	 
+
+	<form class="input-group topSpace" ng-show="list.searchVisible">
+	    <span class="input-group-btn">
+	    	<button class="btn btn-success" type="button" ng-click="list.searchYummy()">
+	    		<i class="glyphicon glyphicon-search"></i>
+	    	</button>
+	    </span>
+	    <input type="text" class="form-control" ng-model="list.yumSearch" />
+    </form>
 	  
 	  
-	  <ul>
+	  <ul ng-hide="list.searchVisible">
 		<li ng-repeat="rec in list.recipes" class="recipeTitle" ng-click="list.goToRecipe(rec._id)">
 		  {{rec.recipeName}}
 		</li>
 	  </ul>
 	  
+	  <table class="table table-striped" ng-show="list.searchVisible">
+		  <tr ng-repeat="match in list.searchMatches">
+		  	<td>
+		  		<img src="{{match.image}}" alt="...">
+		  	</td>
+	  		<td>
+	  			<strong>{{match.name}}</strong>
+	  		</td>
+			<td>
+				<em>{{match.source}}</em>
+			</td>
+			<td>
+				<button class="btn btn-primary" ng-click="list.goToYummly(match.recipeId)">VIEW</button>
+			</td>
+
+		  </tr>
+		  <tr ng-show="list.searchMatches.length !== 0">		  
+		  	<td colspan="4">
+			  	<button class="btn btn-primary btn-sm pull-left" ng-click="list.prevPage()" ng-disabled="list.yumPage == 0">
+			  		<i class="glyphicon glyphicon-chevron-left"></i>
+		  		</button>	  		
+			  	<button class="btn btn-primary btn-sm pull-right" ng-click="list.nextPage()">
+			  		<i class="glyphicon glyphicon-chevron-right"></i>
+		  		</button>
+			  </td>
+		  </tr>
+	  </table>
+
+
+	  
+
   </div>
 </div>
 

@@ -1,0 +1,40 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<h3>{{yum.recipe.name}}</h3>
+
+<img ng-src="{{yum.recipe.images[0].hostedLargeUrl}}" alt="hi" />
+<br /><br />
+<button class="btn btn-warning" ng-click="yum.goBack()">
+	<i class="glyphicon glyphicon-arrow-left"></i>
+</button>
+
+<button class="btn btn-success" ng-click="yum.makeThisMine()">
+	<i class="glyphicon glyphicon-save"></i>
+</button>
+
+<h4>Ingredients</h4>
+<ul>
+	<li ng-repeat="ing in yum.recipe.ingredientLines track by $index">{{ing}}</li>
+</ul>
+
+
+<button class="btn btn-sm tagButton" ng-repeat="tag in yum.recTags">{{tag}}</button>
+
+<br />
+
+<dl class="">
+	<dt>Serving Size:</dt>
+	<dd>{{yum.recipe.numberOfServings}}</dd>
+</dl>
+<dl class="">
+	<dt>Source</dt>
+	<dd>{{yum.recipe.source.sourceDisplayName}}</dd>
+</dl>
+<dl class="">
+	<dt>Source Site</dt>
+	<dd>{{yum.recipe.source.sourceSiteUrl}}</dd>
+</dl>
+<dl class="">
+	<dt>Source Url</dt>
+	<dd>{{yum.recipe.source.sourceRecipeUrl}}</dd>
+</dl>

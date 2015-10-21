@@ -52,6 +52,7 @@
             servingSize: vm.newRecipe.ServingSize,
             ingredients: cleanedIngs,
             instructions: vm.instructions,
+            source: 'my noggin',
             tags: vm.recipeTags
         };
 
@@ -83,8 +84,7 @@
     };
 
     vm.addNewIngredient = function(group) {
-        var index = vm.ingredients.indexOf(group);
-        console.log(vm.ingredients[index]);
+        var index = vm.ingredients.indexOf(group);        
         vm.ingredients[index].ingredients.push({'ing':''});
     };
 

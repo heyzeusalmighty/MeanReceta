@@ -53,3 +53,12 @@
 .topSpace {
     margin-top: 10px;
 }
+
+.yummlyRow {
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.tagButton {
+    margin-right: 5px;
+}

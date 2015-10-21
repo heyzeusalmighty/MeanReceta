@@ -28,6 +28,12 @@ angular.module('recetaApp')
         controllerAs: 'rec'
       })
 
+      .when('/receta/yummly/:recipeId', {
+        templateUrl: 'app/receta/pages/yummly.html',
+        controller: 'YummlyController',
+        controllerAs: 'yum'
+      })
+
 
         // .when("/", {
         //   templateUrl: "pages/list.html",

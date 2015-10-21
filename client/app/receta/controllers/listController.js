@@ -13,8 +13,11 @@
     vm.recipes = [];
     vm.newTagName = "";
     vm.addingTag = false;
-    vm.yumSearch = "cinnamon rolls";
+    vm.yumSearch = "cinnamon";
     vm.searchVisible = false;
+    vm.searchMatches = [];
+    vm.yumPage = 0;
+    vm.loading = false;
     
     
     setTags();
@@ -55,11 +58,52 @@
         vm.searchVisible = true;
     }
 
+    vm.nextPage = function() {
+        vm.yumPage++;
+        vm.searchYummy();
+    };
+
+    vm.prevPage = function() {
+        vm.yumPage--;
+        vm.searchYummy();
+    };
+
     vm.searchYummy = function() {
-        DataService.searchYum(vm.yumSearch).then(function(data) {
-            toastr.success(data);
+        vm.loading = true;
+        DataService.searchYum(vm.yumSearch, vm.yumPage).then(function(data) {
+            vm.loading = false;
+            vm.searchMatches = [];
+
+            toastr.success(data.totalMatchCount + ' total matches');
+            if(data.matches) {
+                //vm.searchMatches = data.matches;
+
+                vm.searchMatches = data.matches.map(function(match) {
+                    
+                    var imageUrl = "";
+                    if(match.imageUrlsBySize) {
+                        imageUrl = match.imageUrlsBySize[90];  
+                    }
+                                
+                    
+                    return { 
+                        'name': match.recipeName, 
+                        'image': imageUrl,
+                        'recipeId' : match.id,
+                        'source' : match.sourceDisplayName
+                    };
+                });
+
+            }
+
+
         });
     };
+
+    vm.goToYummly = function(recipeId) {
+        console.log(recipeId);
+        $location.path('/receta/yummly/' + recipeId);
+    }
 
 
     function setTags() {

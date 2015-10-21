@@ -7,6 +7,9 @@ var RecipeSchema = new Schema({
   recipeName: String,
   description: String,
   servingSize: String,
+  source: String,
+  sourceUrl: String,
+  yummlyId: String,
   ingredients: [{
   	title : String,
   	ingredients: [String]

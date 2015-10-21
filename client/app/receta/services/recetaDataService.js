@@ -18,7 +18,9 @@
             addNewRecipe : addNewRecipe,
             getRecipe : getRecipe,
             updateRecipe : updateRecipe,
-            searchYum : searchYum
+            searchYum : searchYum,
+            getYumRecipe : getYumRecipe,
+            batchCheckTags : batchCheckTags
         };
         return service;
 /////////////////////////////////////////
@@ -73,13 +75,44 @@
             return deferred.promise;
         }
 
-        function searchYum(term) {
+        function searchYum(term, page) {
             var deferred = $q.defer();
-
-            $http.get('/api/yum/' + term).success(function(rec) {
+            $http.get('/api/yum/' + term + '/' + page).success(function(rec) {
                 deferred.resolve(rec);
             });   
             return deferred.promise;
+        }
+
+        function getYumRecipe(recipeId) {
+            var deferred = $q.defer();
+            $http.get('/api/yum/' + recipeId).success(function(rec) {
+                deferred.resolve(rec);
+            });   
+            return deferred.promise;
+        }
+
+
+        function batchCheckTags(tags) {
+            // var deferred = $q.defer();
+
+            // getTags().then(function(allZeTags) {
+            //     var cleanTags = [];
+            //     for(var i = 0; i < tags.length; i++) {
+            //         for(var y = 0; y < allZeTags.length; y++) {
+            //             if(tags[i] )
+            //         }
+
+
+            //     }
+
+
+            // });
+
+
+
+
+
+            // return deferred.promise;
         }
 
     }

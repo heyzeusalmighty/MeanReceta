@@ -61,9 +61,9 @@ User.find({}).remove(function() {
 //   });
 // });
 
-Tag.find({}).remove(function() {
-  Tag.create(
-    { tagName: 'Christmas', active: true },
-    { tagName: 'Turkish', active: true },
-    { tagName: 'Arbor Day', active: true})
-});
+// Tag.find({}).remove(function() {
+//   Tag.create(
+//     { tagName: 'Christmas', active: true },
+//     { tagName: 'Turkish', active: true },
+//     { tagName: 'Arbor Day', active: true})
+// });
