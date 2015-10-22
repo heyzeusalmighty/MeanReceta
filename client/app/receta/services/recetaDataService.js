@@ -20,7 +20,8 @@
             updateRecipe : updateRecipe,
             searchYum : searchYum,
             getYumRecipe : getYumRecipe,
-            batchCheckTags : batchCheckTags
+            batchCheckTags : batchCheckTags,
+            getInstructions : getInstructions
         };
         return service;
 /////////////////////////////////////////
@@ -54,7 +55,7 @@
         function addNewRecipe(rec) {
             var deferred = $q.defer();
             $http.post('/api/recipes', rec).then(function(data) {
-                deferred.resolve(data);
+                deferred.resolve(data.data);
             });
             return deferred.promise;
         }
@@ -112,6 +113,19 @@
             deferred.resolve(todoTags);
 
             return deferred.promise;
+        }
+
+        function getInstructions(recipeId) {
+            var deferred = $q.defer();
+            getRecipe(recipeId).then(function(rec) {
+                if(rec.sourceUrl.length > 0) {
+                    
+                    $http.post('/api/yum/' + rec._id );
+                    deferred.resolve('yo');
+                }
+            })
+            return deferred.promise;
+
         }
 
     }

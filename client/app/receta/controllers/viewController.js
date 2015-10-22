@@ -14,6 +14,7 @@
         toastr.success('loaded');
 
         var recipeId = $routeParams.recipeId;
+        vm.showInstructionGetter = false;
 
         console.log('recipe ID => ' + recipeId);
 
@@ -27,7 +28,10 @@
                     return (data.tags.indexOf(tag._id) > -1);
                 }).map(function(x) {
                     return x.tagName;
-                });      
+                });
+
+                vm.showInstructionGetter = (vm.recipe.instructions.length === 0 && vm.recipe.sourceUrl.length > 0);
+
             });
         });
 
@@ -41,6 +45,13 @@
 
         vm.backToList = function() {
             $location.path('/receta');
+        };
+
+        vm.getInstructions = function() {
+            toastr.success(recipeId);
+            DataService.getInstructions(recipeId).then(function(data) {
+                vm.instructionData = data;
+            })
         };
 
     }

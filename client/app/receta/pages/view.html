@@ -31,7 +31,7 @@
 
 <dl>
     <dt>SOURCE</dt>
-    <dd>{{view.recipe.source}}</dd>
+    <dd>{{view.recipe.source}} - <small>{{view.recipe.sourceUrl}}</small></dd>
     <!-- 
     <dd>Martha Stewart's Greatest Hits - Christmas Time for Martha Town</dd> 
     -->
@@ -55,6 +55,12 @@
         {{instructions.instruction}}
     </dd>
 </dl>
+
+<!-- <div ng-show="view.showInstructionGetter">  -->
+<div>
+    <button class="btn btn-default" ng-click="view.getInstructions()">Get instructions</button>
+    <pre>{{view.instructionData | json}}</pre>
+</div>
 
 
 
