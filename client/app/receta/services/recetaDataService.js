@@ -53,8 +53,8 @@
 
         function addNewRecipe(rec) {
             var deferred = $q.defer();
-            $http.post('/api/recipes', rec).then(function() {
-                deferred.resolve('success');
+            $http.post('/api/recipes', rec).then(function(data) {
+                deferred.resolve(data);
             });
             return deferred.promise;
         }
@@ -93,26 +93,25 @@
 
 
         function batchCheckTags(tags) {
-            // var deferred = $q.defer();
+            var deferred = $q.defer();
 
-            // getTags().then(function(allZeTags) {
-            //     var cleanTags = [];
-            //     for(var i = 0; i < tags.length; i++) {
-            //         for(var y = 0; y < allZeTags.length; y++) {
-            //             if(tags[i] )
-            //         }
+            var todoTags = [];
+            var tagLength = tags.length;
+            for(var i = 0; i < tags.length; i++) {
+                if(tags[i]._id === 0) {
+                    var newTag = { tagName: tags[i].tagName};
+                    $http.post('/api/tags', newTag).success(function(data) {
+                        todoTags.push(data._id);
+                    });  
+                } else {
+                    todoTags.push(tags[i]._id);
+                }
+            }
 
+            
+            deferred.resolve(todoTags);
 
-            //     }
-
-
-            // });
-
-
-
-
-
-            // return deferred.promise;
+            return deferred.promise;
         }
 
     }

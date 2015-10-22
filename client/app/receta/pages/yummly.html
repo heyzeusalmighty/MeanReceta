@@ -9,14 +9,13 @@
 </button>
 
 <button class="btn btn-success" ng-click="yum.makeThisMine()">
-	<i class="glyphicon glyphicon-save"></i>
+	Add to Collection
 </button>
 
 <h4>Ingredients</h4>
 <ul>
 	<li ng-repeat="ing in yum.recipe.ingredientLines track by $index">{{ing}}</li>
 </ul>
-
 
 <button class="btn btn-sm tagButton" ng-repeat="tag in yum.recTags">{{tag}}</button>
 

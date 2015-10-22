@@ -10,6 +10,11 @@
 
 <h3>{{view.recipe.recipeName}} <small>Serving Size: {{view.recipe.servingSize}}</small> </h3>
 
+<div class="row">
+    <img ng-src="{{view.recipe.imageUrl}}" alt="hi" />
+</div>
+
+
 <div class="btn-group" ng-repeat="tag in view.recipeTags">
     <button class="btn btn-primary btn-sm">{{tag}}</button> &nbsp;
 </div>
