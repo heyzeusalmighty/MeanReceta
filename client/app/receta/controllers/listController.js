@@ -4,16 +4,16 @@
   
   angular.module('recetaApp').controller('ListController', ListController);
   
-  ListController.$inject= ['DataService', '$location', 'toastr'];
+  ListController.$inject= ['DataService', '$location', 'toastr', '$timeout'];
 
-  function ListController(DataService, $location, toastr) { 
+  function ListController(DataService, $location, toastr, $timeout) { 
 
     var vm = this;
     vm.tags = [];
     vm.recipes = [];
     vm.newTagName = "";
     vm.addingTag = false;
-    vm.yumSearch = "cinnamon";
+    vm.yumSearch = "";
     vm.searchVisible = false;
     vm.searchMatches = [];
     vm.yumPage = 0;
@@ -56,6 +56,11 @@
 
     vm.openSearch = function() {
         vm.searchVisible = true;
+        $timeout(function() {
+            var searchBox = document.getElementById("yummlySearchBox");
+            searchBox.focus();
+        }, 100);
+
     }
 
     vm.nextPage = function() {

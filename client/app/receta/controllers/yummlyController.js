@@ -81,6 +81,7 @@
 	        		//$location.path('/receta/view/' + data._id);
 	        		//console.log(data);
 	        		toastr.success(data._id)
+	        		$location.path('/receta/view/' + data._id);
 	        	})
 
 

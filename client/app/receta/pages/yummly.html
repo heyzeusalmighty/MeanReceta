@@ -17,7 +17,7 @@
 	<li ng-repeat="ing in yum.recipe.ingredientLines track by $index">{{ing}}</li>
 </ul>
 
-<button class="btn btn-sm tagButton" ng-repeat="tag in yum.recTags">{{tag}}</button>
+<button class="btn btn-sm tagButton" ng-repeat="tag in yum.recTags">{{tag.tagName}}</button>
 
 <br />
 

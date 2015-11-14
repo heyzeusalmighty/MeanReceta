@@ -25,13 +25,13 @@
 
 	 
 
-	<form class="input-group topSpace" ng-show="list.searchVisible">
+	<form class="input-group topSpace" ng-show="list.searchVisible" ng-submit="list.searchYummy()">
 	    <span class="input-group-btn">
 	    	<button class="btn btn-success" type="button" ng-click="list.searchYummy()">
 	    		<i class="glyphicon glyphicon-search"></i>
 	    	</button>
 	    </span>
-	    <input type="text" class="form-control" ng-model="list.yumSearch" />
+	    <input type="text" class="form-control" ng-model="list.yumSearch" id="yummlySearchBox" />
     </form>
 	  
 	  
