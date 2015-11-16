@@ -125,7 +125,7 @@ IF EXIST “%DEPLOYMENT_TARGET%\bower.json” (
 :: 6. Grunt build
 IF EXIST “%DEPLOYMENT_TARGET%\Gruntfile.js” (
    pushd “%DEPLOYMENT_TARGET%”
-  call :ExecuteCmd grunt build
+  call :ExecuteCmd grunt build env:prod --force
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )

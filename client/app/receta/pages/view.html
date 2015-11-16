@@ -58,7 +58,9 @@
 
 <!-- <div ng-show="view.showInstructionGetter">  -->
 <div>
-    <button class="btn btn-default" ng-click="view.getInstructions()">Get instructions</button>
+    <button class="btn btn-default" ng-click="view.getInstructions()" ng-show="view.recipe.instructions.length == 0">
+        Get instructions
+    </button>
     <pre>{{view.instructionData | json}}</pre>
 </div>
 
