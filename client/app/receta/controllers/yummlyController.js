@@ -31,8 +31,8 @@
 
 	            if (vm.recipe.attributes.cuisine) {
 	            	var cuisine = vm.recipe.attributes.cuisine;
-	            	for(var i = 0; i < cuisine.length; i++ ) {            		
-	            		newTags.push(cuisine[i]);
+	            	for(var c = 0; c < cuisine.length; c++ ) {            		
+	            		newTags.push(cuisine[c]);
 	            	}
 	            }
 
@@ -41,12 +41,12 @@
 	            vm.recTags = newTags.map(function(tag) {
 	            	var id = 0;
 	            	for (var x = 0; x < existTags.length; x++) {
-	            		if(tag == existTags[x].tagName) {
+	            		if(tag === existTags[x].tagName) {
 	            			id = existTags[x]._id;
 	            			break;
 	            		}	            		
 	            	}
-	            	return { _id: id, tagName: tag}
+	            	return { _id: id, tagName: tag};
 	            });
 
 	            
@@ -63,7 +63,7 @@
         };
 
         vm.makeThisMine = function() {
-        	console.log('making it mine')
+        	
         	DataService.batchCheckTags(vm.recTags).then(function(cleanTags) {
         		var newRec = {
 		            recipeName : vm.recipe.name,
@@ -80,9 +80,9 @@
 	        	DataService.addNewRecipe(newRec).then(function(data) {
 	        		//$location.path('/receta/view/' + data._id);
 	        		//console.log(data);
-	        		toastr.success(data._id)
+	        		toastr.success(data._id);
 	        		$location.path('/receta/view/' + data._id);
-	        	})
+	        	});
 
 
 

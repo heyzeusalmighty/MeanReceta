@@ -32,11 +32,15 @@
 <button class="btn btn-primary bottomSpacing" ng-click="rec.addNewInstruction()">Add New Instruction</button>
 
 <div class="row">
-	<div class="col-md-6" ng-repeat="ins in rec.recipe.instructions">
+	<div class="col-md-6" ng-repeat="ins in rec.recipe.instructions ">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				{{ins.id}}   
-				<button class="btn btn-danger btn-xs">remove</button>
+				<!-- <button class="btn btn-danger btn-xs" ng-click="rec.recipe.instructions.splice($index,1)">remove</button> -->
+				<button class="btn btn-danger btn-xs" ng-click="rec.deleteInstructions($index)">remove</button>
+
+
+
 			</div>
 			<div class="panel-body">
 				<textarea ng-model="ins.instruction" class="form-control"></textarea>
@@ -63,14 +67,14 @@
 		<button id="addNewIngredient" ng-click="rec.addNewIngredient(group)" class="btn btn-success" type="button">Add New Ingredient</button>
 		<strong><span id="editMessaging"></span></strong>
 		<div class="row">
-			<div ng-repeat="ing in group.ingredients" class="col-md-4">
+			<div ng-repeat="ing in group.ingredients track by $index" class="col-md-4">
 				<div class="input-group  input-group-sm topSpace">
 					<span class="input-group-btn">
 						<button class="btn btn-danger" type="button" ng-click="rec.deleteIngredient($index, $parent.$index)">
 							<i class="glyphicon glyphicon-remove"></i>
-						</button>
+						</button>						
 					</span>
-					<input type="text" class="form-control input-sm" ng-model="ing.ingredient">
+					<input type="text" class="form-control input-sm" ng-model="ing">
 				</div>
 			</div>
 			<hr>

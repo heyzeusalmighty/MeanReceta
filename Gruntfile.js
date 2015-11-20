@@ -623,7 +623,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'concurrent:dist',
-    'injector',
+    //'injector',
     'wiredep',
     'useminPrepare',
     'autoprefixer',
@@ -643,4 +643,5 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
 };

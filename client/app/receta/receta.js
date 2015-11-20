@@ -32,7 +32,7 @@ angular.module('recetaApp')
         templateUrl: 'app/receta/pages/yummly.html',
         controller: 'YummlyController',
         controllerAs: 'yum'
-      })
+      });
 
 
         // .when("/", {

@@ -62,3 +62,13 @@
 .tagButton {
     margin-right: 5px;
 }
+
+.verticalLine {
+    border-left: thick solid black;
+    margin: 10px;
+    height: 20px;
+}
+
+.recipeImageDiv {
+    margin-bottom: 10px;
+}

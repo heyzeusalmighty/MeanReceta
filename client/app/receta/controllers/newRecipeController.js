@@ -41,7 +41,7 @@
         var cleanedIngs = [];
         for(var i = 0; i < vm.ingredients.length; i++) {
             var group = vm.ingredients[i];
-            var newG = { title: group.title, ingredients: group.ingredients.map(function(x) { return x.ing })};
+            var newG = { title: group.title, ingredients: group.ingredients.map(function(x){return x.ing})};
             console.info('newG', newG);
             cleanedIngs.push(newG);
         }
@@ -114,7 +114,7 @@
             vm.foodTags.push(data);
             //setTags();
             vm.addingTag = false;
-            vm.newTagName = "";
+            vm.newTagName = '';
         });
     };
 

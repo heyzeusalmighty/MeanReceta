@@ -79,66 +79,79 @@ exports.show = function(req, res) {
 
 
 exports.getInstructions = function(req, res) {
+	
 	var recipeId = req.params.recipeId;
+
+	console.log('getting instructions', recipeId);
 	//var url = req.params.url;
 	var recipe = {};
 
 	Recipe.findById(recipeId, function (err, rec) {
 		if(err) { return handleError(res, err); }
 		if(!rec) { return res.status(404).send('Not Found'); }
+
+		console.log('got the recipe, getting url ', rec.sourceUrl);
 		
 		request(rec.sourceUrl, function (error, response, body) {
-  			if (!error && response.statusCode == 200) {
+  			if (!error && response.statusCode === 200) {
 			    
 			    var $ = cheerio.load(body);
 			    
-			    if(rec.sourceUrl.indexOf('marthastewart') > -1) {
-			    	var ins = $('div .col2 p').contents();
-			    	
-			    	var directions = [];
+				var directions = [];
 
+			    if(rec.sourceUrl.indexOf('marthastewart') > -1) {
+			    	console.log('its a marthastewart');
+
+			    	var ins = $('div .col2 p').contents();
+
+			    	var insCounter = 1;
 			    	for(var y = 0; y < ins.length; y++) {
+			    		
 			    		var cleanedIns = ins[y].data.trim();
-			    		if(cleanedIns.length > 2) {
-			    			directions.push({id: y + 1, instruction: cleanedIns})
+			    		if(cleanedIns.length > 2 && (cleanedIns.indexOf('delivered to your inbox') === -1) && (cleanedIns.indexOf('Subscribe to Martha Stewart') === -1)) {
+							directions.push({id: insCounter, instruction: cleanedIns});
+			    			insCounter++;
 			    		}			    		
 			    	}
 
 			    	Recipe.findOne({ _id: recipeId }, function (err, doc){
 						doc.instructions = directions;
-						doc.save();						
+						doc.save();	
+						return res.status(200).send(directions);
+
 					});
 
 			    }
 
 			    if(rec.sourceUrl.indexOf('myrecipes.com') > -1) {
-			    	var ins = $('div .field-instructions p').contents();
+			    	var instructions = $('div .field-instructions p').contents();
 			    	
-			    	var directions = [];
-
-			    	for(var y = 0; y < ins.length; y++) {
-			    		var cleanedIns = ins[y].data.trim();
-			    		if(cleanedIns.length > 2) {
-			    			console.log(cleanedIns)
-			    			directions.push({id: y + 1, instruction: cleanedIns})
+			    	for(var x = 0; x < instructions.length; x++) {
+			    		var cleanedInsts = instructions[x].data.trim();
+			    		if(cleanedInsts.length > 2) {
+			    			console.log(cleanedInsts)
+			    			directions.push({id: x + 1, instruction: cleanedInsts})
 			    		}			    		
 			    	}
 
 			    	Recipe.findOne({ _id: recipeId }, function (err, doc){
 						doc.instructions = directions;
 						doc.save();						
+						return res.status(200).send(directions);
 					});
 
 
 			    	//field-instructions
 			    }
 
+			    
+
 
 
 			}
 		});
 		
-
+		
 
 
 	});

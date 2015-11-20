@@ -1,17 +1,35 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 
+<div class="row">
+    <div class="col-md-12">
+        <button class="btn btn-warning">
+          <i class="glyphicon glyphicon-arrow-left" ng-click="view.backToList()"></i>
+        </button>
+        <button class="btn btn-primary" ng-click="view.commenceEditing()">Edit</button>
+        <button class="btn btn-danger" ng-hide="view.activelyDeleting" ng-click="view.deleteRecipe()">Delete</button>
 
-<button class="btn btn-warning">
-  <i class="glyphicon glyphicon-arrow-left" ng-click="view.backToList()"></i>
-</button>
-<button class="btn btn-primary" ng-click="view.commenceEditing()">Edit</button>
+        <span ng-show="view.activelyDeleting" class="verticalLine"> 
+            <i class="glyphicon glyphicon-remove"></i>
+        </span>    
+        
+            <button class="btn btn-primary" ng-show="view.activelyDeleting" ng-click="view.cancelDelete()">Cancel</button>
+            <button class="btn btn-danger" ng-show="view.activelyDeleting" ng-click="view.actuallyDeleteRecipe()">Yes, Delete</button>
+        
+    </div>
+</div>
+
+<div ng-show="view.loading">
+    <h4>Loading</h4>
+</div>
 
 
 <h3>{{view.recipe.recipeName}} <small>Serving Size: {{view.recipe.servingSize}}</small> </h3>
 
 <div class="row">
-    <img ng-src="{{view.recipe.imageUrl}}" alt="hi" />
+    <div class="col-md-12 recipeImageDiv">
+        <img ng-src="{{view.recipe.imageUrl}}" alt="hi" />
+    </div>
 </div>
 
 
@@ -31,10 +49,7 @@
 
 <dl>
     <dt>SOURCE</dt>
-    <dd>{{view.recipe.source}} - <small>{{view.recipe.sourceUrl}}</small></dd>
-    <!-- 
-    <dd>Martha Stewart's Greatest Hits - Christmas Time for Martha Town</dd> 
-    -->
+    <dd>{{view.recipe.source}} - <small>{{view.recipe.sourceUrl}}</small></dd>    
 </dl>
 
 <h4>Ingredients</h4>
@@ -60,8 +75,7 @@
 <div>
     <button class="btn btn-default" ng-click="view.getInstructions()" ng-show="view.recipe.instructions.length == 0">
         Get instructions
-    </button>
-    <pre>{{view.instructionData | json}}</pre>
+    </button>    
 </div>
 
 

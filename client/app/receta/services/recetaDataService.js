@@ -21,7 +21,8 @@
             searchYum : searchYum,
             getYumRecipe : getYumRecipe,
             batchCheckTags : batchCheckTags,
-            getInstructions : getInstructions
+            getInstructions : getInstructions,
+            deleteRecipe : deleteRecipe
         };
         return service;
 /////////////////////////////////////////
@@ -96,8 +97,7 @@
         function batchCheckTags(tags) {
             var deferred = $q.defer();
 
-            var todoTags = [];
-            var tagLength = tags.length;
+            var todoTags = [];            
             for(var i = 0; i < tags.length; i++) {
                 if(tags[i]._id === 0) {
                     var newTag = { tagName: tags[i].tagName};
@@ -120,12 +120,21 @@
             getRecipe(recipeId).then(function(rec) {
                 if(rec.sourceUrl.length > 0) {
                     
-                    $http.post('/api/yum/' + rec._id );
-                    deferred.resolve('yo');
+                    $http.post('/api/yum/' + rec._id ).success(function(response) {
+                        deferred.resolve(response);
+                    });
                 }
-            })
+            });
             return deferred.promise;
 
+        }
+
+        function deleteRecipe(recipeId) {
+            var deferred = $q.defer();
+            $http.delete('/api/recipes/' + recipeId).success(function() {
+                deferred.resolve(true);        
+            });
+            return deferred.promise;
         }
 
     }

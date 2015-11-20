@@ -70,14 +70,32 @@
      vm.recipe.ingredients[group].ingredients.splice(ing, 1);
    };
    
-   
+   vm.deleteInstructions = function(index) {
+      
+      var instructions = vm.recipe.instructions;
+      
+      console.info(instructions.length);
+
+      //pull out the offending instruction
+      instructions.splice(index,1);
+
+      //reorder the counters
+      instructionCounter = 0;
+      instructions.sort(compareInstructions);
+      for(var i = 0; i < instructions.length; i++) {
+        instructionCounter++;
+        instructions[i].id = instructionCounter;
+      }
+   };
+
+
    
    //function s
    vm.update = function() {
+    console.info(vm.recipe.instructions);
      toastr.success('Saving => ' + vm.recipe.servingSize);
-     DataService.updateRecipe(vm.recipe).then(function(data) {
-       toastr.success(data);
-       $location.path('/receta/view/' + vm.recipeId);
+     DataService.updateRecipe(vm.recipe).then(function() {
+        $location.path('/receta/view/' + vm.recipeId);
      });
    };
    
@@ -86,6 +104,20 @@
      $location.path('/receta/view/' + vm.recipeId);
    };
    
+
+
+  function compareInstructions(a,b) {
+    if (a.id < b.id) {
+      return -1;
+    }
+    if (a.id > b.id) {
+      return 1;
+    }
+    return 0;
+  }
+
+  
+
     
   }
   

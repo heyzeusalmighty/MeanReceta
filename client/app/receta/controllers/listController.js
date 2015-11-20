@@ -11,9 +11,9 @@
     var vm = this;
     vm.tags = [];
     vm.recipes = [];
-    vm.newTagName = "";
+    vm.newTagName = '';
     vm.addingTag = false;
-    vm.yumSearch = "";
+    vm.yumSearch = '';
     vm.searchVisible = false;
     vm.searchMatches = [];
     vm.yumPage = 0;
@@ -45,23 +45,22 @@
             toastr.success(data);
             setTags();
             vm.addingTag = false;
-            vm.newTagName = "";
+            vm.newTagName = '';
         });
     };
 
     vm.cancelTag = function() {
         vm.addingTag = false;
-        vm.newTagName = "";
-    }
+        vm.newTagName = '';
+    };
 
     vm.openSearch = function() {
         vm.searchVisible = true;
         $timeout(function() {
-            var searchBox = document.getElementById("yummlySearchBox");
+            var searchBox = document.getElementById('yummlySearchBox');
             searchBox.focus();
         }, 100);
-
-    }
+    };
 
     vm.nextPage = function() {
         vm.yumPage++;
@@ -85,7 +84,7 @@
 
                 vm.searchMatches = data.matches.map(function(match) {
                     
-                    var imageUrl = "";
+                    var imageUrl = '';
                     if(match.imageUrlsBySize) {
                         imageUrl = match.imageUrlsBySize[90];  
                     }
@@ -108,7 +107,7 @@
     vm.goToYummly = function(recipeId) {
         console.log(recipeId);
         $location.path('/receta/yummly/' + recipeId);
-    }
+    };
 
 
     function setTags() {
