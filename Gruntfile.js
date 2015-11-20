@@ -54,20 +54,20 @@ module.exports = function (grunt) {
       }
     },
     watch: {
-      injectJS: {
-        files: [
-          '<%= yeoman.client %>/{app,components}/**/*.js',
-          '!<%= yeoman.client %>/{app,components}/**/*.spec.js',
-          '!<%= yeoman.client %>/{app,components}/**/*.mock.js',
-          '!<%= yeoman.client %>/app/app.js'],
-        tasks: ['injector:scripts']
-      },
-      injectCss: {
-        files: [
-          '<%= yeoman.client %>/{app,components}/**/*.css'
-        ],
-        tasks: ['injector:css']
-      },
+      // injectJS: {
+      //   files: [
+      //     '<%= yeoman.client %>/{app,components}/**/*.js',
+      //     '!<%= yeoman.client %>/{app,components}/**/*.spec.js',
+      //     '!<%= yeoman.client %>/{app,components}/**/*.mock.js',
+      //     '!<%= yeoman.client %>/app/app.js'],
+      //   tasks: ['injector:scripts']
+      // },
+      // injectCss: {
+      //   files: [
+      //     '<%= yeoman.client %>/{app,components}/**/*.css'
+      //   ],
+      //   tasks: ['injector:css']
+      // },
       mochaTest: {
         files: ['server/**/*.spec.js'],
         tasks: ['env:test', 'mochaTest']
@@ -479,53 +479,53 @@ module.exports = function (grunt) {
       }
     },
 
-    injector: {
-      options: {
+    // injector: {
+    //   options: {
 
-      },
-      // Inject application script files into index.html (doesn't include bower)
-      scripts: {
-        options: {
-          transform: function(filePath) {
-            filePath = filePath.replace('/client/', '');
-            filePath = filePath.replace('/.tmp/', '');
-            return '<script src="' + filePath + '"></script>';
-          },
-          starttag: '<!-- injector:js -->',
-          endtag: '<!-- endinjector -->'
-        },
-        files: {
-          '<%= yeoman.client %>/index.html': [
-               [
+    //   },
+    //   // Inject application script files into index.html (doesn't include bower)
+    //   scripts: {
+    //     options: {
+    //       transform: function(filePath) {
+    //         filePath = filePath.replace('/client/', '');
+    //         filePath = filePath.replace('/.tmp/', '');
+    //         return '<script src="' + filePath + '"></script>';
+    //       },
+    //       starttag: '<!-- injector:js -->',
+    //       endtag: '<!-- endinjector -->'
+    //     },
+    //     files: {
+    //       '<%= yeoman.client %>/index.html': [
+    //            [
                  
-                 '.tmp/{app,components}/**/*.js',
+    //              '.tmp/{app,components}/**/*.js',
                  
-                 '!{.tmp,<%= yeoman.client %>}/app/app.js',               
-                 '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.spec.js',
-                 '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.mock.js'               
-               ]
-            ]
-        }
-      },
+    //              '!{.tmp,<%= yeoman.client %>}/app/app.js',               
+    //              '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.spec.js',
+    //              '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.mock.js'               
+    //            ]
+    //         ]
+    //     }
+    //   },
 
-      // Inject component css into index.html
-      css: {
-        options: {
-          transform: function(filePath) {
-            filePath = filePath.replace('/client/', '');
-            filePath = filePath.replace('/.tmp/', '');
-            return '<link rel="stylesheet" href="' + filePath + '">';
-          },
-          starttag: '<!-- injector:css -->',
-          endtag: '<!-- endinjector -->'
-        },
-        files: {
-          '<%= yeoman.client %>/index.html': [
-            '<%= yeoman.client %>/{app,components}/**/*.css'
-          ]
-        }
-      }
-    },
+    //   // Inject component css into index.html
+    //   css: {
+    //     options: {
+    //       transform: function(filePath) {
+    //         filePath = filePath.replace('/client/', '');
+    //         filePath = filePath.replace('/.tmp/', '');
+    //         return '<link rel="stylesheet" href="' + filePath + '">';
+    //       },
+    //       starttag: '<!-- injector:css -->',
+    //       endtag: '<!-- endinjector -->'
+    //     },
+    //     files: {
+    //       '<%= yeoman.client %>/index.html': [
+    //         '<%= yeoman.client %>/{app,components}/**/*.css'
+    //       ]
+    //     }
+    //   }
+    // },
   });
 
   // Used for delaying livereload until after server has restarted
@@ -554,7 +554,7 @@ module.exports = function (grunt) {
         'clean:server',
         'env:all',
         'concurrent:server',
-        'injector',
+        //'injector',
         'wiredep',
         'autoprefixer',
         'concurrent:debug'
@@ -565,7 +565,7 @@ module.exports = function (grunt) {
       'clean:server',
       'env:all',
       'concurrent:server',
-      'injector',
+      //'injector',
       'wiredep',
       'autoprefixer',
       'express:dev',
@@ -594,7 +594,7 @@ module.exports = function (grunt) {
         'clean:server',
         'env:all',
         'concurrent:test',
-        'injector',
+        //'injector',
         'autoprefixer',
         'karma'
       ]);
@@ -606,7 +606,7 @@ module.exports = function (grunt) {
         'env:all',
         'env:test',
         'concurrent:test',
-        'injector',
+        //'injector',
         'wiredep',
         'autoprefixer',
         'express:dev',
@@ -624,7 +624,7 @@ module.exports = function (grunt) {
     'clean:dist',
     'concurrent:dist',
     //'injector',
-    'wiredep',
+    //'wiredep',
     'useminPrepare',
     'autoprefixer',
     'ngtemplates',
