@@ -7,12 +7,14 @@
 // Set default node environment to development
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
+
 var express = require('express');
 var mongoose = require('mongoose');
 var config = require('./config/environment');
 
 // Connect to database
 console.log('MONGO SAYS', config.mongo.uri);
+console.log('ENV => ', process.env.NODE_ENV);
 mongoose.connect(config.mongo.uri, config.mongo.options);
 mongoose.connection.on('error', function(err) {
 	console.error('MongoDB connection error: ' + err);
