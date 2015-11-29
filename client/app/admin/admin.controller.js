@@ -22,8 +22,11 @@ angular.module('recetaApp')
     	})
     };
 
-    $scope.addRecipe = function(recipeId) {
-    	console.info(recipeId);
+    $scope.addRecipe = function(recipe) {
+    	console.info(recipe);
+    	$http.post("/api/oldRecipess", recipe).success(function(data) {
+    		console.log('data', data);
+    	})
     }
 
 });

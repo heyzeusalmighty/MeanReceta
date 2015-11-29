@@ -20,7 +20,7 @@
 		<th>Description</th>
 	</tr>
 	<tr ng-repeat="old in oldRecipes">
-		<td><button class="btn btn-success" ng-click="addRecipe(old.recipeId)">Add</button></td>
+		<td><button class="btn btn-success" ng-click="addRecipe(old)">Add</button></td>
 		<td>{{old.recipeName}}</td>
 		<td>{{old.description}}</td>
 	</tr>
