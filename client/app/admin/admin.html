@@ -9,4 +9,25 @@
         <a ng-click="delete(user)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
     </li>
   </ul>
+
+<hr>
+<button class="btn btn-default" ng-click="getOldRecipes()">Get Old Recipes</button>
+
+<table class="table">
+	<tr>
+		<th></th>
+		<th>Name</th>
+		<th>Description</th>
+	</tr>
+	<tr ng-repeat="old in oldRecipes">
+		<td><button class="btn btn-success" ng-click="addRecipe(old.recipeId)">Add</button></td>
+		<td>{{old.recipeName}}</td>
+		<td>{{old.description}}</td>
+	</tr>
+
+
+</table>
+
+<pre>{{oldRecipes | json}}</pre>
+
 </div>
