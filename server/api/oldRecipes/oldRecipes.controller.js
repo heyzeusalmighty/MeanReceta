@@ -157,12 +157,16 @@ function transferThatOneRecipe(oldRecipe, res) {
 				}
 			}
 
-			var cleaned = oldRecipe.instructions.replace('<ol>', '');
-			cleaned = cleaned.replace('</ol>', '');
-			cleaned = cleaned.replace('</li>', '');
+			var cleaned = oldRecipe.instructions.replace(/(<ol>|<\/ol>|<\/li>)/g, '');
 
+			// clean up ampersands
+			cleaned = cleaned.replace(/&amp;/g, '&');
+			
 			var inst = cleaned.split('<li>');
-			var counter = 0;
+			//The first object is an empty string
+			inst.splice(0,1);
+
+			var counter = 1;
 			var newInst = inst.map(function(obj) {
 			  return { id: counter++, instruction: obj}
 			});
@@ -172,7 +176,7 @@ function transferThatOneRecipe(oldRecipe, res) {
 				description: oldRecipe.description,
 				servingSize: oldRecipe.servingSize,
 				source: 'old stuff',
-				imageUrl: oldRecipe.imageUrl,
+				imageUrl: (oldRecipe.imageUrl != null) ? config.blobStorageEndpoint + oldRecipe.imageUrl : null,
 				yummlyId: oldRecipe.recipeId,
 				ingredients : finalIngs,
 				instructions : newInst,
