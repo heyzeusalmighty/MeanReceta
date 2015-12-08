@@ -1,33 +1,34 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <div class="container">
-  <p>The delete user and user index api routes are restricted to users with the 'admin' role.</p>
-  <ul class="list-group">
-    <li class="list-group-item" ng-repeat="user in users">
-        <strong>{{user.name}}</strong><br>
-        <span class="text-muted">{{user.email}}</span>
-        <a ng-click="delete(user)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
-    </li>
-  </ul>
+	<p>The delete user and user index api routes are restricted to users with the 'admin' role.</p>
+	<ul class="list-group">
+		<li class="list-group-item" ng-repeat="user in users">
+			<strong>{{user.name}}</strong><br>
+			<span class="text-muted">{{user.email}}</span>
+			<a ng-click="delete(user)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
+		</li>
+	</ul>
 
-<hr>
-<button class="btn btn-default" ng-click="getOldRecipes()">Get Old Recipes</button>
+	<hr>
+	<button class="btn btn-default" ng-click="getOldRecipes()">Transfer Old Recipes</button>
 
-<table class="table">
-	<tr>
-		<th></th>
-		<th>Name</th>
-		<th>Description</th>
-	</tr>
-	<tr ng-repeat="old in oldRecipes">
-		<td><button class="btn btn-success" ng-click="addRecipe(old)">Add</button></td>
-		<td>{{old.recipeName}}</td>
-		<td>{{old.description}}</td>
-	</tr>
+	<table class="table">
+		<tr>
+			<th></th>
+			<th>Name</th>
+			<th>Description</th>
+		</tr>
+		<tr ng-repeat="old in oldRecipes">
+			<td>
+				<button class="btn btn-success" ng-hide="old.transferred" ng-click="addRecipe(old)">Add</button>
+				<button class="btn btn-danger" disabled ng-show="old.transferred">Added</button>
+			</td>
+			<td>{{old.recipeName}}</td>
+			<td>{{old.description}}</td>
+		</tr>
 
 
-</table>
-
-<pre>{{oldRecipes | json}}</pre>
+	</table>
 
 </div>

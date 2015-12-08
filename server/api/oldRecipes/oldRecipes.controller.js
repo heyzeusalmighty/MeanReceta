@@ -50,6 +50,13 @@ function handleError(res, err) {
 }
 
 function getAllTheOldRecipes(res) {
+
+	var oldRec = [];
+	NewRecipe.find(function (err, recipes) {
+		if(err) { return handleError(res, err); }
+		oldRec = recipes;
+	});
+
 	var connection = new Connection(dbConfig);
 	connection.on('connect', function(err) {
       // If no error, then good to proceed.
@@ -72,9 +79,9 @@ function getAllTheOldRecipes(res) {
 		
 		var result = [];
 
-
+		console.log('recipe count:', oldRec.length)
 		request.on('row', function(columns) {
-			//console.log('RecipeId: ', columns[0].value);
+			//console.log();
 			result.push({ 
 				recipeId: columns[0].value,
 				recipeName: columns[1].value,
@@ -83,7 +90,10 @@ function getAllTheOldRecipes(res) {
 				instructions: columns[4].value,
 				servingSize: columns[5].value,
 				tags: columns[6].value,
+				transferred: _.some(oldRec, { 'recipeName' : columns[1].value.trim()})  //{ 'age': 1 }
 			});
+
+			//console.log(columns[1].value, _.some(oldRec, {'recipeName' : columns[1].value.trim()}));
 
 		});
 
