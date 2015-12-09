@@ -2,12 +2,10 @@
 
 var _ = require('lodash');
 var Recipe = require('./recipe.model');
-var imageService = require('../foodPics/foodPics.controller');
 var fs = require('fs');
 var request = require('request');
 var azure = require('azure-storage');
-//var imageServicePr = Promise.promisifyAll(require('../foodPics/foodPics.controller'));
-//var q = require('Q');
+
 
 // Get list of recipes
 exports.index = function(req, res) {
@@ -103,7 +101,7 @@ var saveImage = function(recipe, callback) {
   	fileName += newArr[newArr.length -1];
   }
 
-  var filePath = './server/api/foodpics/img/' + fileName;
+  var filePath = './server/dumpFolder/' + fileName;
 
   var ws = fs.createWriteStream(filePath);
   ws.on('error', function(err) { console.log(err); });
