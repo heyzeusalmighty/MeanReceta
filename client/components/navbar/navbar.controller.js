@@ -7,8 +7,8 @@ angular.module('recetaApp')
       'link': '/'
     },
     {
-      'title': 'Receta',
-      'link': '/receta'
+      'title': 'Recipes',
+      'link': '/recipe'
     }];
 
     $scope.isCollapsed = true;

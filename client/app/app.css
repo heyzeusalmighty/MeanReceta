@@ -72,3 +72,14 @@
 .recipeImageDiv {
     margin-bottom: 10px;
 }
+
+.recipeList {
+    cursor: pointer;
+    border-bottom: 1px dashed black;
+    margin-top: 10px;
+}
+
+.recipeName {
+    font-size: large;
+    font-weight: bold;
+}

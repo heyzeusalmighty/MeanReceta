@@ -7,9 +7,7 @@
         <button class="btn btn-warning">
           <i class="glyphicon glyphicon-arrow-left" ng-click="view.backToList()"></i>
         </button>
-        <button class="btn btn-primary" ng-click="view.commenceEditing()">Edit</button>
-        <button class="btn btn-danger" ng-hide="view.activelyDeleting" ng-click="view.deleteRecipe()">Delete</button>
-
+       
         <span ng-show="view.activelyDeleting" class="verticalLine"> 
             <i class="glyphicon glyphicon-remove"></i>
         </span>    
@@ -67,19 +65,8 @@
     </dd>
 </dl>
 
-<!-- <div ng-show="view.showInstructionGetter">  -->
-<div>
-    <button class="btn btn-default" ng-click="view.getInstructions()" ng-show="view.recipe.instructions.length == 0">
-        Get instructions
-    </button>    
-</div>
 
 
 
-
-
-<!-- 
-<pre>{{view.recipe | json}}</pre>
-    -->
 
    </div>

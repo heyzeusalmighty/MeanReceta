@@ -6,8 +6,8 @@ angular.module('recetaApp')
     $routeProvider
       .when('/receta', {
         templateUrl: 'app/receta/pages/list.html',
-		controller: 'ListController',
-		controllerAs: 'list'
+		    controller: 'ListController',
+		    controllerAs: 'list'
       })
 
       .when('/receta/view/:recipeId', {
